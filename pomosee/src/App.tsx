@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import '../public/animation.css'
 import { activateLasers } from './timer'
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
         
         {/* botton section */}
         <div id="container-button">
-          <button  id = "pomo" onClick={activateLasers}>START</button>
-          <button  id = "short" className = "show" onClick={activateLasers}>stop</button>
+          <button  id = "pomo" className="ani " onClick={activateLasers}>start</button>
+          <button  id = "short" className="ani show" onClick={activateLasers}>stop</button>
         </div>
       </div>
       
