@@ -23,7 +23,8 @@ function startTimer(duration: number, display: Element  ) {
 
     
 
-  }, 1000)
+  }, 1000); 
+
 
 
   
