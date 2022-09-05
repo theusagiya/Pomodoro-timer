@@ -1,45 +1,74 @@
+ // Default inicial value of time
+const defaultValue = 25 * 60 ; 
 
-// Function that implermant start buttom
-function startTimer(duration: number, display: Element  ) {
-  var timer = duration, minutes, seconds;
-  console.log(display);
 
-  var interval = setInterval(() => {
-    
+
+const countdown = (countdownTime, minutes) => {
+  // let counts=setInterval(updated, 1000);
+  const stimer = (s) =>  {
+    let time = s * 1000
+    return new Promise(res => setTimeout(res, time))
+  }
+
+  var secNumber = 60;
+  var minNumber = 25; 
+
+  function updated() {    
+
+
   
-    minutes = parseInt(timer / 60, 10);
-    seconds = parseInt(timer % 60, 10);
-
-
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+    var Mcount= document.querySelector(".min");
+    var Scount= document.querySelector(".sec");
 
     
-    display.textContent = minutes + ":" + seconds;
 
-    if (--timer < 0) {
-        timer = duration
+
+   async function start() {
+    
+    while (minNumber != 0 ) {  
+      var sec = --secNumber; 
+
+      if(sec < 10 ) { sec = "0" + sec }
+      if (sec === 59 && minNumber === 25) {--minNumber}; 
+
+      if(minNumber != 25 && secNumber == 0) {
+        --minNumber
+        secNumber = 60;
+
+      }
+
+      Scount.innerHTML= sec;
+      Mcount.innerHTML= minNumber;
+
+        
+      if(sec == 0) {
+        Scount.innerHTML = "00";
+        clearInterval(counts);
+        
+      } 
+
+      await stimer(2);
+
     } 
 
+    return start();
     
+   }
+   
+   
 
-  }, 1000); 
+
+  }
 
 
-
+  return updated();
   
+  
+ 
+} 
 
 
-}
 
-
-
-function timer() {
-  var duration = 60 * 1; 
-  var display = document.querySelector("#timer");
-  return startTimer(duration, display);
-
-}
 
 
 
@@ -47,5 +76,11 @@ function timer() {
 // Buttom export
 export function activateLasers() {
 
-  return timer();
+  var countdownTime = document.querySelector(".countdown-timer"); 
+  // Variable to the time
+  var minutes = defaultValue
+
+
+  return countdown( countdownTime, minutes );
+
 }

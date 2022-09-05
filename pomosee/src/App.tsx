@@ -22,7 +22,7 @@ function App() {
             <a>Break</a>
           </div>
 
-          <div className="countdown-timer">25:00</div>
+          <div className="countdown-timer"><p className="min">25</p><span>:</span><p className="sec">00</p></div>
         </div>
         
         {/* botton section */}
